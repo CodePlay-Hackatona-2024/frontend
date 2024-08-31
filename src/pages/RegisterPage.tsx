@@ -1,15 +1,6 @@
-import React, { useState } from 'react';
 import { Input } from "@/components/ui/input";
 
 export default function RegistrationPage() {
-  const [name, setName] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleRegister = () => {
-    // Implement registration logic here
-    console.log('Registering:', { name, cpf, password });
-  };
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-gray-100">

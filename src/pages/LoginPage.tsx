@@ -1,40 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 
-// Simulating a fetch from a database
-const fetchUsers = async () => {
-  return [
-    { email: 'user1@example.com', password: 'password1' },
-    { email: 'user2@example.com', password: 'password2' },
-  ];
-};
-
 export default function LoginPage() {
-  const [users, setUsers] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    // Fetch users from the "database"
-    const getUsers = async () => {
-      const usersFromDB = await fetchUsers();
-      setUsers(usersFromDB);
-    };
-
-    getUsers();
-  }, []);
-
-  const handleLogin = () => {
-    const user = users.find((user) => user.email === email && user.password === password);
-
-    if (user) {
-      // Redirect to dashboard or do something on successful login
-      console.log('Login successful');
-    } else {
-      setError('Invalid email or password');
-    }
-  };
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-gray-100">
@@ -43,7 +10,7 @@ export default function LoginPage() {
       </button>
       <div className="text-center">
         <div className="mb-8">
-          {/* Replace this with your actual logo */}
+          {/*logo*/}
           <div className="flex justify-center">
             <svg className="w-24 h-24 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8zm8 2a8 8 0 11-16 0 8 8 0 0116 0z" />
