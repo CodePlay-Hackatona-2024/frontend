@@ -17,10 +17,13 @@ import ShopPage from "./pages/ShopPage";
 import { AuthProvider } from "./context/AuthContext";
 import EventInfoPage from "./pages/EventInfoPage";
 import CouponsPage from "./pages/CouponsPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AppRouter: React.FC = () => {
   return (
     <AuthProvider>
+      <ToastContainer /> {/* Adicione o ToastContainer aqui */}
       <BrowserRouter>
         <Routes>
           <Route element={<PublicWrapper />}>

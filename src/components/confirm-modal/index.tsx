@@ -48,7 +48,9 @@ export function DialogDemo({ id }: { id: string }): ReactNode {
             <Button type="submit">Sair</Button>
           </div>
         ) : (
-          <Button onClick={handleConfirm}>Confirmar</Button>
+          <Button className="text-white" onClick={handleConfirm}>
+            Confirmar
+          </Button>
         )}
       </DialogFooter>
     </DialogContent>

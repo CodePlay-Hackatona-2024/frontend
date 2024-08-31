@@ -15,7 +15,7 @@ type ButtonType = "subscribe";
 
 type Props = {
   buttonType: ButtonType;
-  data: eventModel & { imageUrl: string };
+  data: eventModel;
   onSubscribe?: () => void;
 };
 
@@ -35,14 +35,18 @@ const CardComponent = ({ buttonType: type, data, onSubscribe }: Props) => {
   return (
     <Card className="flex flex-col w-full max-w-md h-full p-4 justify-center mx-auto">
       <img
-        src={data?.imageUrl || defaultImage}
+        src={data?.photo_url || defaultImage}
         alt="Imagem Evento"
         className="w-full h-36 object-cover rounded-md"
       />
-      
+
       <CardHeader className="m-0 p-0 pt-4">
-        <CardTitle>{data?.title || "Saiba o que fazer em uma inundação"}</CardTitle>
-        <CardDescription>{data?.location || "Parque Esportivo PUCRS"}</CardDescription>
+        <CardTitle>
+          {data?.title || "Saiba o que fazer em uma inundação"}
+        </CardTitle>
+        <CardDescription>
+          {data?.location || "Parque Esportivo PUCRS"}
+        </CardDescription>
         <CardDescription className="flex gap-1 items-center text-gray-500">
           <Calendar size={16} />
           {data?.date || "25 Mar 2024, Sexta"}
@@ -51,7 +55,8 @@ const CardComponent = ({ buttonType: type, data, onSubscribe }: Props) => {
 
       <CardContent className="mt-4">
         <p className="text-gray-700">
-          {data?.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa."}
+          {data?.description ||
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa."}
         </p>
         <div className="mt-4 flex justify-between">
           <button
