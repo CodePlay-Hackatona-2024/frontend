@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { CiMail } from "react-icons/ci";
 import { ClipLoader } from "react-spinners";
-import backgroundImage from '../assets/background2.jpg';
+import { api } from "@/lib/api/axios";
+import backgroundImage from "../assets/background2.jpg";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/logo.png";
 
@@ -22,22 +23,17 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:8080/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await api.post<{ id: string }>(
+        "user/login",
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Login bem-sucedido", data);
+        JSON.stringify({ email, password })
+      );
+
+      if (response.status == 200) {
+        console.log("Login successful", response.data);
+        localStorage.setItem("id", response.data.id);
         login();
         navigate("/events");
-      } else if (response.status === 400) {
-        const data = await response.json();
-        setError(data.join(" "));
       } else {
         setError("Falha no login. Tente novamente.");
       }
@@ -61,13 +57,17 @@ export default function LoginPage() {
     >
       <div className="text-center bg-white p-8 rounded-lg shadow-lg w-full max-w-xs">
         <div className="mb-8">
-          <h1 className="text-primary font-inter text-3xl font-bold">Help Chain</h1>
+          <h1 className="text-primary font-inter text-3xl font-bold">
+            Help Chain
+          </h1>
           <div className="flex justify-center mt-4">
             <img src={logo} alt="Logo" className="w-24 h-24 object-cover" />
           </div>
         </div>
 
-        <div className="space-y-4">  {/* Reduzi o espaço aqui de space-y-6 para space-y-4 */}
+        <div className="space-y-4">
+          {" "}
+          {/* Reduzi o espaço aqui de space-y-6 para space-y-4 */}
           <div className="relative">
             <CiMail className="absolute left-4 top-1/2 transform -translate-y-1/2" />
             <Input
