@@ -8,7 +8,6 @@ import {
 import { api } from "../lib/api/axios";
 import { eventModel } from "../models/event.model";
 
-type Props = {};
 
 // const events: eventModel[] = [
 //   {
@@ -42,7 +41,7 @@ type Props = {};
 //   },
 // ];
 
-const EventsPage = (props: Props) => {
+const EventsPage = () => {
   const getEvents = async () => {
     const response: { events: eventModel[] } = await api
       .get(

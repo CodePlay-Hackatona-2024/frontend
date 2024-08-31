@@ -3,9 +3,7 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
 } from "../ui/card";
-import image from "../../assets/event-mock.png";
 import { Calendar } from "lucide-react";
 import { eventModel } from "../../models/event.model";
 import { useNavigate } from "react-router-dom";
