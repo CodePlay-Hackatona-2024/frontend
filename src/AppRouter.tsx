@@ -12,6 +12,7 @@ import RegisterPage from "./pages/RegisterPage";
 import { ToggleGroupDemo } from "./components/navigationBar";
 import EventsPage from "./pages/EventsPage";
 import { Header } from "./components/header/Header";
+import CardComponent from "./components/card";
 // import EventsPage from "./pages/EventsPage";
 // import MyEventsPage from "./pages/MyEventsPage";
 // import ShopPage from "./pages/ShopPage";
@@ -35,8 +36,15 @@ const AppRouter: React.FC = () => {
         {/* Uncomment the routes below if you want to enable them */}
         {/* <Route path="/events" element={<EventsPage />} />
         <Route path="/my-events" element={<MyEventsPage />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/coupons" element={<CouponsPage />} /> */}
+        <Route path="/shop" element={<ShopPage />} />*/}
+        <Route
+          path="/coupons"
+          element={
+            <div className="w-full">
+              <CardComponent></CardComponent>
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
