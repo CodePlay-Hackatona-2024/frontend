@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import CardComponent from "../components/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "../components/ui/carousel";
+import { api } from "../lib/api/axios";
 import { eventModel } from "../models/event.model";
 
 type Props = {};
@@ -41,6 +43,17 @@ const events: eventModel[] = [
 ];
 
 const EventsPage = (props: Props) => {
+  const getEvents = async () => {
+    const response = await api.get(
+      "https://backend-wheat-alpha-40.vercel.app/events"
+    );
+    console.log(response);
+  };
+
+  useEffect(() => {
+    getEvents();
+  }, []);
+
   return (
     <main className="px-4 gap-4 flex flex-col mb-24">
       <h1 className="text-3xl font-bold">Eventos Disponíveis</h1>

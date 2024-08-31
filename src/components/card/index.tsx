@@ -31,11 +31,13 @@ const CardComponent = ({ buttonType: type, data }: Props) => {
 
   if (!data)
     return (
-      <Card className={`flex flex-col w-1/1 h-1/1 p-6 justify-center`}>
+      <Card
+        className={`flex flex-col w-1/1 h-1/1 p-4 h-full justify justify-between`}
+      >
         <img
           src={image}
           alt="Imagem Evento"
-          className="w-full h-28 object-cover"
+          className="w-full h-28 object-cover rounded-lg"
         />
         <div className="flex">
           <div className="flex flex-col w-full gap-4">
@@ -48,22 +50,23 @@ const CardComponent = ({ buttonType: type, data }: Props) => {
               </CardDescription>
             </CardHeader>
             {type && (
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <button className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded">
                 Saiba Mais
               </button>
             )}
-            <CardContent className="flex flex-col m-0 p-0 ml-6 justify-end items-center"></CardContent>
           </div>
         </div>
       </Card>
     );
 
   return (
-    <Card className={`flex flex-col w-1/1 h-1/1 p-6 justify-center`}>
+    <Card
+      className={`flex flex-col w-1/1 h-1/1 p-4 h-full justify justify-between`}
+    >
       <img
-        src={image}
+        src={data.imageUrl}
         alt="Imagem Evento"
-        className="w-full h-28 object-cover"
+        className="w-full h-28 object-cover rounded-lg"
       />
       <div className="flex">
         <div className="flex flex-col w-full gap-4">
@@ -76,11 +79,10 @@ const CardComponent = ({ buttonType: type, data }: Props) => {
             </CardDescription>
           </CardHeader>
           {type && (
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded">
               Saiba Mais
             </button>
           )}
-          <CardContent className="flex flex-col m-0 p-0 ml-6 justify-end items-center"></CardContent>
         </div>
       </div>
     </Card>
