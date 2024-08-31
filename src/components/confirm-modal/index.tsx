@@ -15,15 +15,21 @@ import { ReactNode, useState } from "react";
 
 export function DialogDemo({ id }: { id: string }): ReactNode {
   const [confirmed, setConfirmed] = useState(false);
+  const [password, setPassword] = useState("");
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
   const handleConfirm = async () => {
-    const id = localStorage.getItem("id");
-    console.log(id);
-    const response = await api.patch(
-      `user/register/${id}/${localStorage.getItem("id")}`
-    );
+    const user_id = localStorage.getItem("id");
+
+    const response = await api.patch("user/confirm-presence", {
+      user_id: user_id,
+      event_id: id,
+      confirmation_code: password,
+    });
     if (response.status === 200) {
       setConfirmed(true);
-      console.log("Confirmed");
     }
   };
 
@@ -38,17 +44,25 @@ export function DialogDemo({ id }: { id: string }): ReactNode {
       <div className="grid gap-4 py-4">
         <div className="grid grid-cols-4 items-center gap-4">
           <Label className="text-right">Código</Label>
-          <Input defaultValue="123456" className="col-span-3" />
+          <Input
+            defaultValue="123456"
+            className="col-span-3"
+            onChange={(e) => handleInput(e)}
+          />
         </div>
       </div>
       <DialogFooter>
         {confirmed ? (
-          <div className="flex gap-2">
+          <div className="flex gap-2 justify-center items-center">
             <p>Parabéns! Você concluiu um evento!</p>
-            <Button type="submit">Sair</Button>
           </div>
         ) : (
-          <Button onClick={handleConfirm}>Confirmar</Button>
+          <Button
+            onClick={handleConfirm}
+            className="bg-primary hover:bg-primary/90 text-white font-bold rounded"
+          >
+            Confirmar
+          </Button>
         )}
       </DialogFooter>
     </DialogContent>

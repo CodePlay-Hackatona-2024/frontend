@@ -1,44 +1,29 @@
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "../ui/card";
+import { Card, CardHeader, CardTitle, CardDescription } from "../ui/card";
 import { Calendar } from "lucide-react";
 import { eventModel } from "../../models/event.model";
 import { useNavigate } from "react-router-dom";
-import { Dialog } from "@radix-ui/react-dialog";
-import { DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import { DialogDemo } from "../confirm-modal";
 
 type buttoType = "subscribe" | "validate" | "knowMore";
 
 type Props = {
   buttonType: buttoType;
-  data: eventModel & { imageUrl: string };
+  data: eventModel;
 };
 
 const CardComponent = ({ buttonType: type, data }: Props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (type === "subscribe") {
-      console.log(" call handle subscribe");
-    } else if (type === "validate") {
-      console.log(" call handle validate");
-    } else if (type === "knowMore") {
-      navigate(`/event-info/${data?.event_id}`);
-    }
+    navigate(`/event-info/${data?.event_id}`);
   };
 
   const getButtonComponent = (type: buttoType) => {
     switch (type) {
       case "subscribe":
         return (
-          <button
-            onClick={handleClick}
-            className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded"
-          >
+          <button className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded">
             Inscreva-se
           </button>
         );
@@ -47,10 +32,10 @@ const CardComponent = ({ buttonType: type, data }: Props) => {
           <Dialog>
             <DialogTrigger asChild>
               <button className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded">
-                Saiba Mais
+                Validar horas
               </button>
             </DialogTrigger>
-            <DialogDemo id="dsijaidsj"></DialogDemo>
+            <DialogDemo id={data?.event_id}></DialogDemo>
           </Dialog>
         );
       case "knowMore":
@@ -70,7 +55,7 @@ const CardComponent = ({ buttonType: type, data }: Props) => {
       className={`flex flex-col w-1/1 h-1/1 p-4 h-full justify justify-between`}
     >
       <img
-        src={data.imageUrl}
+        src={data.photo_url}
         alt="Imagem Evento"
         className="w-full h-28 object-cover rounded-lg"
       />
