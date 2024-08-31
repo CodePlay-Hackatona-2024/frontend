@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import coin from "../../assets/coin.svg";
+import coin from "../../assets/coin.png";
 
 export const Header = () => {
   return (
