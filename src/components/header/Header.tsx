@@ -13,7 +13,7 @@ export const Header = () => {
           <AvatarFallback>JD</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
-          <h6 className="text-2xl font-bold">Seja bem vindo!</h6>
+          <h6 className="font-semibold">Seja bem vindo!</h6>
           <p className="text-sm text-gray-500">
             <a href="/login">João Demari</a>
           </p>
