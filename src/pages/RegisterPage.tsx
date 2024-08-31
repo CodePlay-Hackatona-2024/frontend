@@ -5,6 +5,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { CiMail } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
 import { AiOutlineIdcard } from "react-icons/ai";
+import backgroundImage from '../assets/background2.jpg';
 
 export default function RegistrationPage() {
   const [name, setName] = useState("");
@@ -30,10 +31,8 @@ export default function RegistrationPage() {
       const data = await response.json();
 
       if (response.ok) {
-        // Handle successful registration (e.g., redirect, show success message)
         console.log("Registration successful", data);
       } else {
-        // Handle errors (e.g., email already taken)
         setError(data.message || "Registration failed");
       }
     } catch (error) {
@@ -45,19 +44,21 @@ export default function RegistrationPage() {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gray-100">
-      <Button
-        className="absolute top-4 right-4 px-3 py-1.5 text-gray-600 bg-gray-300 text-sm hover:bg-gray-400"
-        onClick={() => window.location.href = "/login"} // Redirect to login page
-      >
-        Sign in
-      </Button>
-      <div className="text-center">
-        <div className="mb-8">
+    <div
+      className="relative flex items-center justify-center min-h-screen"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="text-center bg-white p-6 rounded-lg shadow-lg w-full max-w-xs">
+        <div className="mb-6">
           <div className="flex justify-center">
-            <img src="/logo.png" alt="Logo" className="w-24 h-24" />
+            <img src="/logo.png" alt="Logo" className="w-20 h-20" />
           </div>
-          <h1 className="text-2xl font-semibold mt-6">Bem-vindo ao ‘...’</h1>
+          <h1 className="text-xl font-semibold mt-4">Bem-vindo ao ‘...’</h1>
           <p className="text-gray-500 text-lg">Crie sua conta...</p>
         </div>
 
@@ -106,7 +107,7 @@ export default function RegistrationPage() {
 
         {error && <p className="text-red-500 mt-4">{error}</p>}
 
-        <div className="mt-8">
+        <div className="mt-6">
           <Button
             className="w-full bg-primary text-white hover:bg-primary/90 text-lg"
             onClick={handleRegister}
@@ -114,6 +115,19 @@ export default function RegistrationPage() {
           >
             {loading ? "Loading..." : "Registrar"}
           </Button>
+        </div>
+
+        <div className="mt-4">
+          <p className="text-gray-500 text-sm">
+            Já tem uma conta?{" "}
+            <Button
+              variant="link"
+              className="text-primary hover:underline"
+              onClick={() => window.location.href = "/login"}
+            >
+              Faça login
+            </Button>
+          </p>
         </div>
       </div>
     </div>

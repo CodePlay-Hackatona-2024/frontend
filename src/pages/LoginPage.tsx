@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { CiMail } from "react-icons/ci";
 import { ClipLoader } from "react-spinners";
+import backgroundImage from '../assets/background2.jpg';
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -41,14 +42,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gray-100">
-      <Button
-        className="absolute top-4 right-4 px-3 py-1.5 text-white bg-primary text-sm hover:bg-primary/90"
-        onClick={() => (window.location.href = "/register")}
-      >
-        Cadastrar
-      </Button>
-      <div className="text-center">
+    <div
+      className="relative flex items-center justify-center min-h-screen"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="text-center bg-white p-8 rounded-lg shadow-lg">
         <div className="mb-8">
           <div className="flex justify-center">
             <img src="/logo.png" alt="Logo" className="w-24 h-24" />
