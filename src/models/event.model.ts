@@ -1,3 +1,5 @@
+import { eventType } from "../types/eventTypes";
+
 export type eventModel = {
   event_id: string;
   title: string;
@@ -5,7 +7,7 @@ export type eventModel = {
   date: string;
   capacity: number;
   reward: number;
-  type: string;
+  type: eventType;
   isRegistered: boolean;
   organizerId: null;
   done: boolean;
