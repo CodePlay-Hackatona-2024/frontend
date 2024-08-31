@@ -23,15 +23,15 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const response = await api.post<{ id: string }>(
+      const response = await api.post<{ user :{id: string }}>( 
         "user/login",
 
         JSON.stringify({ email, password })
       );
 
-      if (response.status == 200) {
+      if (response.status == 201) {
         console.log("Login successful", response.data);
-        localStorage.setItem("id", response.data.id);
+        localStorage.setItem("id", response.data.user.id);
         login();
         navigate("/events");
       } else {
