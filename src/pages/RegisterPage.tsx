@@ -12,12 +12,20 @@ export default function RegistrationPage() {
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
 
   const handleRegister = async () => {
+    if (password !== confirmPassword) {
+      setPasswordError("As senhas não coincidem");
+      return;
+    }
+
     setLoading(true);
     setError("");
+    setPasswordError("");
 
     try {
       const response = await fetch("/api/auth/register", {
@@ -103,6 +111,17 @@ export default function RegistrationPage() {
               className="w-full pl-14 text-lg py-2"
             />
           </div>
+          <div className="relative">
+            <RiLockPasswordLine className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600" />
+            <Input
+              type="password"
+              placeholder="Confirme a Senha"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="w-full pl-14 text-lg py-2"
+            />
+          </div>
+          {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
         </div>
 
         {error && <p className="text-red-500 mt-4">{error}</p>}
@@ -122,7 +141,7 @@ export default function RegistrationPage() {
             Já tem uma conta?{" "}
             <Button
               variant="link"
-              className="text-primary hover:underline"
+              className="text-primary hover:underline ml-1"
               onClick={() => window.location.href = "/login"}
             >
               Faça login
