@@ -1,55 +1,152 @@
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { CiMail } from "react-icons/ci";
+import { FaRegUser } from "react-icons/fa";
+import { AiOutlineIdcard } from "react-icons/ai";
+import backgroundImage from '../assets/background2.jpg';
 
 export default function RegistrationPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+
+  const handleRegister = async () => {
+    if (password !== confirmPassword) {
+      setPasswordError("As senhas não coincidem");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    setPasswordError("");
+
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, cpf, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Registration successful", data);
+      } else {
+        setError(data.message || "Registration failed");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      setError("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gray-100">
-      <button className="absolute top-4 right-4 px-3 py-1.5 text-gray-600 bg-gray-300 rounded-md text-sm">
-        Sign in
-      </button>
-      <div className="text-center">
-        <div className="mb-8">
-          {/*logo*/}
+    <div
+      className="relative flex items-center justify-center min-h-screen"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="text-center bg-white p-6 rounded-lg shadow-lg w-full max-w-xs">
+        <div className="mb-6">
           <div className="flex justify-center">
-            <svg className="w-24 h-24 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8zm8 2a8 8 0 11-16 0 8 8 0 0116 0z" />
-            </svg>
+            <img src="/logo.png" alt="Logo" className="w-20 h-20" />
           </div>
-          <h1 className="text-2xl font-semibold mt-6">Bem-vindo ao ‘...’</h1>
+          <h1 className="text-xl font-semibold mt-4">Bem-vindo ao ‘...’</h1>
           <p className="text-gray-500 text-lg">Crie sua conta...</p>
         </div>
 
         <div className="space-y-4">
-          <Input
-            type="text"
-            placeholder="Nome"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full text-lg px-4 py-2"
-          />
-          <Input
-            type="text"
-            placeholder="CPF"
-            value={cpf}
-            onChange={(e) => setCpf(e.target.value)}
-            className="w-full text-lg px-4 py-2"
-          />
-          <Input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full text-lg px-4 py-2"
-          />
+          <div className="relative">
+            <FaRegUser className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
+            <Input
+              type="text"
+              placeholder="Nome"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full pl-14 text-lg py-2"
+            />
+          </div>
+          <div className="relative">
+            <CiMail className="absolute left-4 top-1/2 transform -translate-y-1/2" />
+            <Input
+              type="email"
+              placeholder="E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full pl-14 text-lg py-2"
+            />
+          </div>
+          <div className="relative">
+            <AiOutlineIdcard className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600" />
+            <Input
+              type="text"
+              placeholder="CPF"
+              value={cpf}
+              onChange={(e) => setCpf(e.target.value)}
+              className="w-full pl-14 text-lg py-2"
+            />
+          </div>
+          <div className="relative">
+            <RiLockPasswordLine className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600" />
+            <Input
+              type="password"
+              placeholder="Senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full pl-14 text-lg py-2"
+            />
+          </div>
+          <div className="relative">
+            <RiLockPasswordLine className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600" />
+            <Input
+              type="password"
+              placeholder="Confirme a Senha"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="w-full pl-14 text-lg py-2"
+            />
+          </div>
+          {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
         </div>
 
-        <div className="mt-8">
-          <button
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+
+        <div className="mt-6">
+          <Button
+            className="w-full bg-primary text-white hover:bg-primary/90 text-lg"
             onClick={handleRegister}
-            className="w-full px-4 py-2 text-white bg-blue-600 rounded-md text-lg"
+            disabled={loading}
           >
-            Registrar
-          </button>
+            {loading ? "Loading..." : "Registrar"}
+          </Button>
+        </div>
+
+        <div className="mt-4">
+          <p className="text-gray-500 text-sm">
+            Já tem uma conta?{" "}
+            <Button
+              variant="link"
+              className="text-primary hover:underline ml-1"
+              onClick={() => window.location.href = "/login"}
+            >
+              Faça login
+            </Button>
+          </p>
         </div>
       </div>
     </div>
