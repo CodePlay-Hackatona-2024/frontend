@@ -25,7 +25,6 @@ export default function LoginPage() {
     try {
       const response = await api.post<{ user :{id: string }}>( 
         "user/login",
-
         JSON.stringify({ email, password })
       );
 
