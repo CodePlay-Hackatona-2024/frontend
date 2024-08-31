@@ -6,7 +6,7 @@ import { api } from "../lib/api/axios";
 import { eventModel } from "../models/event.model";
 
 const EventInfoPage = () => {
-  const { id } = useParams<{ id: string }>(); // Captura o id da URL
+  const { id } = useParams<{ id: string }>();
   const [eventData, setEventData] = useState<eventModel | null>(null);
   const [loading, setLoading] = useState(true);
 
