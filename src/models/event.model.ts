@@ -1,7 +1,14 @@
+import { eventType } from "../types/eventTypes";
+
 export type eventModel = {
-  imageUrl: string;
+  event_id: string;
   title: string;
-  location: string;
+  description: string;
   date: string;
-  type: "treinamento" | "multirao" | "doacao" | "simulacao";
+  capacity: number;
+  reward: number;
+  type: eventType;
+  isRegistered: boolean;
+  organizerId: null;
+  done: boolean;
 };
