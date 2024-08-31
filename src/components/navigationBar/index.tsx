@@ -14,22 +14,22 @@ const navigateRoutes: {
 }[] = [
   {
     path: "/events",
-    icon: <CalendarDays className="h-8 w-8 text-white" />,
+    icon: <CalendarDays className="h-7 w-7 text-white" />,
     label: "Eventos",
   },
   {
     path: "/my-events",
-    icon: <CalendarCheck className="h-8 w-8 text-white" />,
+    icon: <CalendarCheck className="h-7 w-7 text-white" />,
     label: "Meus Eventos",
   },
   {
     path: "/shop",
-    icon: <ShoppingCart className="h-8 w-8 text-white" />,
+    icon: <ShoppingCart className="h-7 w-7 text-white" />,
     label: "Loja",
   },
   {
     path: "/rewards",
-    icon: <Trophy className="h-8 w-8 text-white" />,
+    icon: <Trophy className="h-7 w-7 text-white" />,
     label: "Cupons",
   },
 ];
@@ -42,7 +42,7 @@ export const ToggleGroupDemo = () => {
   };
   return (
     <ToggleGroup
-      className="fixed bottom-0 left-0 w-full bg-primary p-4 flex justify-around"
+      className="fixed bottom-0 left-0 w-full bg-primary p-3 flex justify-around"
       type="single"
       size="lg"
     >
