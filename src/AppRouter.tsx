@@ -26,7 +26,7 @@ const AppRouter: React.FC = () => {
             <Route path="/my-events" element={<MyEventsPage />} />
             <Route path="/rewards" element={<div />} />
             <Route path="/shop" element={<ShopPage />} />
-            <Route path="/event-info" element={<EventInfoPage />} />
+            <Route path="/event-info/:id" element={<EventInfoPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
@@ -35,7 +35,7 @@ const AppRouter: React.FC = () => {
 };
 
 const PrivateWrapper = () => {
-  //const { isAuthenticated } = useAuth();
+  // const { isAuthenticated } = useAuth();
   const isAuthenticated = true;
 
   return isAuthenticated ? (
