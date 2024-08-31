@@ -49,14 +49,17 @@ const EventsPage = (props: Props) => {
         <CarouselContent>
           {events.map((eventData) => (
             <CarouselItem className="basis-3/5 lg:basis-1/3">
-              <CardComponent data={eventData}></CardComponent>
+              <CardComponent
+                buttonType="knowMore"
+                data={eventData}
+              ></CardComponent>
             </CarouselItem>
           ))}
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
@@ -64,16 +67,16 @@ const EventsPage = (props: Props) => {
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
@@ -81,16 +84,16 @@ const EventsPage = (props: Props) => {
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
@@ -98,16 +101,16 @@ const EventsPage = (props: Props) => {
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>

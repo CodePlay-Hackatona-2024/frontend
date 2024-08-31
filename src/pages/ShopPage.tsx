@@ -1,4 +1,3 @@
-import React from "react";
 import CardComponent from "../components/card";
 import {
   Carousel,
@@ -16,13 +15,13 @@ const ShopPage = (props: Props) => {
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <></>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
@@ -31,16 +30,16 @@ const ShopPage = (props: Props) => {
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
