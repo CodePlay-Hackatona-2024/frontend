@@ -8,7 +8,19 @@ import {
 import image from "../../assets/event-mock.png";
 import { Calendar } from "lucide-react";
 
-const CardComponent = () => {
+type Props = {
+  type: "subscribe" | "validate";
+};
+
+const CardComponent = ({ type }: Props) => {
+  const handleClick = () => {
+    if (type === "subscribe") {
+      console.log(" call handle subscribe");
+    } else if (type === "validate") {
+      console.log(" call handle validate");
+    }
+  };
+
   return (
     <Card className={`flex flex-col w-1/1 h-1/1 p-6 justify-center`}>
       <img src={image} alt="Imagem Evento" className="w-full" />
