@@ -6,10 +6,7 @@ export const Header = () => {
     <header className="flex items-center p-4 text-black w-100vw justify-between">
       <div className="flex gap-4">
         <Avatar>
-          <AvatarImage
-            src="https://images.unsplash.com/photo-1612839637272-9c4b2f0c5e0b"
-            alt="Avatar"
-          />
+          <AvatarImage src="" alt="Avatar" />
           <AvatarFallback>JD</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
