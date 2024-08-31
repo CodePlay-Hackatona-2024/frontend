@@ -8,8 +8,10 @@ import {
 import image from "../../assets/event-mock.png";
 import { Calendar } from "lucide-react";
 
+type buttoType = "subscribe" | "validate" | "knowMore";
+
 type Props = {
-  type?: "subscribe" | "validate";
+  buttonType: buttoType;
   data?: {
     imageUrl: string;
     title: string;
@@ -18,7 +20,7 @@ type Props = {
   };
 };
 
-const CardComponent = ({ type, data }: Props) => {
+const CardComponent = ({ buttonType: type, data }: Props) => {
   const handleClick = () => {
     if (type === "subscribe") {
       console.log(" call handle subscribe");
@@ -29,10 +31,16 @@ const CardComponent = ({ type, data }: Props) => {
 
   if (!data)
     return (
-      <Card className={`flex flex-col w-1/1 h-1/1 p-6 justify-center`}>
-        <img src={image} alt="Imagem Evento" className="w-full" />
+      <Card
+        className={`flex flex-col w-1/1 h-1/1 p-4 h-full justify justify-between`}
+      >
+        <img
+          src={image}
+          alt="Imagem Evento"
+          className="w-full h-28 object-cover rounded-lg"
+        />
         <div className="flex">
-          <div>
+          <div className="flex flex-col w-full gap-4">
             <CardHeader className="m-0 p-0 pt-4">
               <CardTitle>Saiba o que fazer em uma inundação</CardTitle>
               <CardDescription>Parque Esportivo PUCRS</CardDescription>
@@ -41,23 +49,27 @@ const CardComponent = ({ type, data }: Props) => {
                 31/08/2024
               </CardDescription>
             </CardHeader>
-          </div>
-          {type && (
-            <CardContent className="flex flex-col m-0 p-0 ml-6 justify-end items-center">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Validar
+            {type && (
+              <button className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded">
+                Saiba Mais
               </button>
-            </CardContent>
-          )}
+            )}
+          </div>
         </div>
       </Card>
     );
 
   return (
-    <Card className={`flex flex-col w-1/1 h-1/1 p-6 justify-center`}>
-      <img src={data.imageUrl} alt="Imagem Evento" className="w-full" />
+    <Card
+      className={`flex flex-col w-1/1 h-1/1 p-4 h-full justify justify-between`}
+    >
+      <img
+        src={data.imageUrl}
+        alt="Imagem Evento"
+        className="w-full h-28 object-cover rounded-lg"
+      />
       <div className="flex">
-        <div>
+        <div className="flex flex-col w-full gap-4">
           <CardHeader className="m-0 p-0 pt-4">
             <CardTitle>{data.title}</CardTitle>
             <CardDescription>{data.location}</CardDescription>
@@ -65,15 +77,12 @@ const CardComponent = ({ type, data }: Props) => {
               <Calendar size={16} />
               {data.date}
             </CardDescription>
-               {type && (
-            <CardContent className="flex flex-col m-0 p-0 ml-6 justify-end items-center">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Validar
-              </button>
-            </CardContent>
-          )}
           </CardHeader>
-       
+          {type && (
+            <button className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded">
+              Saiba Mais
+            </button>
+          )}
         </div>
       </div>
     </Card>

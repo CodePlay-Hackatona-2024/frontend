@@ -1,14 +1,16 @@
+import { useEffect } from "react";
 import CardComponent from "../components/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "../components/ui/carousel";
+import { api } from "../lib/api/axios";
 import { eventModel } from "../models/event.model";
 
 type Props = {};
 
-const events: eventModel = [
+const events: eventModel[] = [
   {
     imageUrl: "https://cdn.evg.gov.br/cursos/697_EVG/imagem_curso_697.png",
     title: "Proteção e Defesa Civil: Atuação no Âmbito Municipal - Curso 2",
@@ -36,10 +38,22 @@ const events: eventModel = [
     title: " Voluntariado em cozinha solidária",
     location: " Porto Alegre",
     date: "04/09/2024",
+    type: "multirao",
   },
 ];
 
 const EventsPage = (props: Props) => {
+  const getEvents = async () => {
+    const response = await api.get(
+      "https://backend-wheat-alpha-40.vercel.app/events"
+    );
+    console.log(response);
+  };
+
+  useEffect(() => {
+    getEvents();
+  }, []);
+
   return (
     <main className="px-4 gap-4 flex flex-col mb-24">
       <h1 className="text-3xl font-bold">Eventos Disponíveis</h1>
@@ -48,14 +62,17 @@ const EventsPage = (props: Props) => {
         <CarouselContent>
           {events.map((eventData) => (
             <CarouselItem className="basis-3/5 lg:basis-1/3">
-              <CardComponent data={eventData}></CardComponent>
+              <CardComponent
+                buttonType="knowMore"
+                data={eventData}
+              ></CardComponent>
             </CarouselItem>
           ))}
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
@@ -63,16 +80,16 @@ const EventsPage = (props: Props) => {
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
@@ -80,16 +97,16 @@ const EventsPage = (props: Props) => {
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
@@ -97,16 +114,16 @@ const EventsPage = (props: Props) => {
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>

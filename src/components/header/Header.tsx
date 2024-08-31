@@ -16,9 +16,9 @@ export const Header = () => {
           </p>
         </div>
       </div>
-      <div className="flex gap-4 items-center justify-center">
-        <img src={coin} alt="Moeda" className="w-1/4 h-1/4" />
-        <p>100</p>
+      <div className="flex gap-2 items-center justify-center">
+        <img src={coin} alt="Moeda" className="w-1/3 h-1/3" />
+        <p className="font-bold">100</p>
       </div>
     </header>
   );
