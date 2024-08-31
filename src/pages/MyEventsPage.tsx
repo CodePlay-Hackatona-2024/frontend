@@ -48,22 +48,25 @@ const MyEventsPage = (props: Props) => {
         <CarouselContent>
           {events.map((eventData) => (
             <CarouselItem className="basis-3/5 lg:basis-1/3">
-              <CardComponent data={eventData}></CardComponent>
+              <CardComponent
+                buttonType="knowMore"
+                data={eventData}
+              ></CardComponent>
             </CarouselItem>
           ))}
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
           <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
+            <CardComponent buttonType="knowMore"></CardComponent>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
       <h2 className="text-xl font-semibold">Eventos Anteriores</h2>
-      <CardComponent></CardComponent>
-      <CardComponent></CardComponent>
-      <CardComponent></CardComponent>
-      <CardComponent></CardComponent>
+      <CardComponent buttonType="knowMore"></CardComponent>
+      <CardComponent buttonType="knowMore"></CardComponent>
+      <CardComponent buttonType="knowMore"></CardComponent>
+      <CardComponent buttonType="knowMore"></CardComponent>
     </main>
   );
 };
