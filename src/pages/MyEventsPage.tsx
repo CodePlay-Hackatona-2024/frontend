@@ -18,7 +18,7 @@ const MyEventsPage = () => {
       try {
         const response: { events: eventModel[] } = await api
           .get(
-            "https://backend-wheat-alpha-40.vercel.app/event/cm0i89f540002bch62xpvp5pc"
+            `https://backend-wheat-alpha-40.vercel.app/event/${localStorage.getItem("id")}`
           )
           .then((response: { data: { events: eventModel[] } }) => response.data);
 
@@ -35,7 +35,7 @@ const MyEventsPage = () => {
     };
 
     getEvents();
-  }, []);
+  });
 
   return (
     <main className="px-4 gap-4 flex flex-col mb-24">
@@ -46,8 +46,8 @@ const MyEventsPage = () => {
             if (!eventData.isRegistered) return null;
             if (eventData.done) return null;
             return (
-              <CarouselItem key={eventData.event_id} className="basis-3/5 lg:basis-1/3">
-                <CardComponent buttonType="knowMore" data={eventData} />
+              <CarouselItem className="basis-3/5 lg:basis-1/3">
+                <CardComponent buttonType="validate" data={eventData} />
               </CarouselItem>
             );
           })}

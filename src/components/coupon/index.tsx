@@ -25,7 +25,7 @@ const Coupon = ({ data }: { data: CouponProps }) => {
   return (
     <Card className={`flex flex-col w-1/1 h-1/1 p-6 justify-center`}>
       <Avatar className="w-2/12">
-        <AvatarImage src={logoImage} alt="Dono do Cupom" />
+        <AvatarImage src={data.partner.logo} alt="Dono do Cupom" />
         <AvatarFallback></AvatarFallback>
       </Avatar>
       <div className="flex">
@@ -33,7 +33,7 @@ const Coupon = ({ data }: { data: CouponProps }) => {
           <CardHeader className="m-0 p-0 pt-4">
             <CardTitle>{data.name}</CardTitle>
             <CardDescription>{data.description}</CardDescription>
-            <CardDescription>Renner</CardDescription>
+            <CardDescription>{data.partner.name}</CardDescription>
             <div className="flex gap-2 items-center ">
               <CardDescription>{data.value}</CardDescription>
               <img src={coin} alt="Moeda" className="w-2.5 h-2.5" />

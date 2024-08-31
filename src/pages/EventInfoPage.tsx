@@ -10,6 +10,7 @@ const EventInfoPage = () => {
   const { id } = useParams<{ id: string }>();
   const [eventData, setEventData] = useState<eventModel | null>(null);
   const [loading, setLoading] = useState(true);
+  const userId = localStorage.getItem("id");
 
   useEffect(() => {
     const getEventData = async () => {
@@ -33,7 +34,9 @@ const EventInfoPage = () => {
 
   const handleSubscribe = async () => {
     try {
-      await api.post(`/user/register/${id}/${user_id}`);
+      console.log(userId);
+      console.log(id);
+      await api.patch(`/user/register/${id}/${userId}`);
       if (eventData) {
         setEventData({ ...eventData, isRegistered: true });
       }
