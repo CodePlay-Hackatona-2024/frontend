@@ -7,24 +7,37 @@ import {
   CardContent,
 } from "../ui/card";
 import { Calendar } from "lucide-react";
-import image from "../../assets/renner.png";
+import logoImage from "../../assets/renner.png";
+import coin from "../../assets/coin.png";
 
-const Coupon = () => {
+export type CouponProps = {
+  item_id: string;
+  name: string;
+  description: string;
+  value: number;
+  partner: {
+    name: string;
+    logo: string;
+  };
+};
+
+const Coupon = ({ data }: { data: CouponProps }) => {
   return (
     <Card className={`flex flex-col w-1/1 h-1/1 p-6 justify-center`}>
       <Avatar className="w-2/12">
-        <AvatarImage src={image} alt="Dono do Cupom" />
-        <AvatarFallback>RN</AvatarFallback>
+        <AvatarImage src={logoImage} alt="Dono do Cupom" />
+        <AvatarFallback></AvatarFallback>
       </Avatar>
       <div className="flex">
         <div className="w-3/4">
           <CardHeader className="m-0 p-0 pt-4">
-            <CardTitle>Desconto de 20% em todo o site</CardTitle>
+            <CardTitle>{data.name}</CardTitle>
+            <CardDescription>{data.description}</CardDescription>
             <CardDescription>Renner</CardDescription>
-            <CardDescription className="flex gap-1 items-center">
-              <Calendar size={16} />
-              Disponível até 31/08/2024
-            </CardDescription>
+            <div className="flex gap-2 items-center ">
+              <CardDescription>{data.value}</CardDescription>
+              <img src={coin} alt="Moeda" className="w-2.5 h-2.5" />
+            </div>
           </CardHeader>
         </div>
 
