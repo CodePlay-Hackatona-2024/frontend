@@ -22,7 +22,8 @@ const ShopPage = () => {
   }, []);
   return (
     <main className="px-4 gap-4 flex flex-col mb-24">
-      <h1 className="text-3xl font-bold">Loja</h1>
+      
+      <h1 className="text-3xl font-bold">Prêmios Disponíveis</h1>
 
       {data.map((item, index) => (
         <div key={index}>

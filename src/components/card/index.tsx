@@ -1,14 +1,9 @@
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "../ui/card";
-import image from "../../assets/event-mock.png";
+import { Card, CardHeader, CardTitle, CardDescription } from "../ui/card";
 import { Calendar } from "lucide-react";
 import { eventModel } from "../../models/event.model";
 import { useNavigate } from "react-router-dom";
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
+import { DialogDemo } from "../confirm-modal";
 
 type buttoType = "subscribe" | "validate" | "knowMore";
 
@@ -27,6 +22,40 @@ const CardComponent = ({ buttonType: type, data }: Props) => {
       console.log(" call handle validate");
     } else if (type === "knowMore") {
       navigate(`/event-info/${data?.event_id}`);
+    }
+  };
+
+  const getButtonComponent = (type: buttoType) => {
+    switch (type) {
+      case "subscribe":
+        return (
+          <button
+            onClick={handleClick}
+            className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded"
+          >
+            Inscreva-se
+          </button>
+        );
+      case "validate":
+        return (
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded">
+                Saiba Mais
+              </button>
+            </DialogTrigger>
+            <DialogDemo id="dsijaidsj"></DialogDemo>
+          </Dialog>
+        );
+      case "knowMore":
+        return (
+          <button
+            onClick={handleClick}
+            className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded"
+          >
+            Saiba Mais
+          </button>
+        );
     }
   };
 
@@ -49,14 +78,7 @@ const CardComponent = ({ buttonType: type, data }: Props) => {
               {data.date}
             </CardDescription>
           </CardHeader>
-          {type && (
-            <button
-              onClick={handleClick}
-              className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded"
-            >
-              Saiba Mais
-            </button>
-          )}
+          {type && getButtonComponent(type)}
         </div>
       </div>
     </Card>
