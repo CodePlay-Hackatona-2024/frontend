@@ -10,6 +10,7 @@ import {
 import { Calendar } from "lucide-react";
 import logoImage from "../../assets/renner.png";
 import coin from "../../assets/coin.png";
+import { api } from "@/lib/api/axios";
 
 export type CouponProps = {
   item_id: string;
@@ -23,6 +24,7 @@ export type CouponProps = {
 };
 
 const Coupon = ({ data }: { data: CouponProps }) => {
+  const [clicked, setClicked] = useState(false);
   const [copied, setCopied] = useState(false);
   const couponCode = "DESC10OFFAUG24";
 
@@ -32,6 +34,15 @@ const Coupon = ({ data }: { data: CouponProps }) => {
     setTimeout(() => setCopied(false), 2000); // Reseta o estado após 2 segundos
   };
 
+  const handleRedeem = async () => {
+    console.log(data.item_id);
+    const user_id = localStorage.getItem("id");
+    const response = await api.patch(`user/buy/${user_id}/${data.item_id}`);
+    if (response.status === 200) {
+      setCopied(true);
+    }
+  };
+
   return (
     <Card className={`relative flex flex-col w-1/1 h-1/1 p-6 justify-center`}>
       <div className="absolute top-4 right-4 flex items-center space-x-2">
@@ -39,7 +50,7 @@ const Coupon = ({ data }: { data: CouponProps }) => {
           onClick={handleCopy}
           className="text-sm font-bold cursor-pointer bg-gray-100 p-2 rounded-md hover:bg-gray-200"
         >
-          {couponCode}
+          {clicked && couponCode}
         </span>
         {copied && <span className="text-green-500 text-xs">Copiado!</span>}
       </div>
@@ -61,7 +72,10 @@ const Coupon = ({ data }: { data: CouponProps }) => {
         </div>
 
         <CardContent className="flex flex-col m-0 p-0 ml-6 justify-end items-center">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={handleRedeem}
+          >
             Resgatar
           </button>
         </CardContent>

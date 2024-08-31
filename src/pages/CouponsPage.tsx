@@ -5,6 +5,7 @@ import { BalanceCard } from "../components/balance-card";
 
 const CouponsPage = () => {
   const [data, setData] = useState<CouponProps[]>([]);
+  const [balance, setBalance] = useState(0);
   const handleLogin = async () => {
     try {
       const coupons = (await api.get<{ items: CouponProps[] }>("/item")).data;
@@ -14,14 +15,21 @@ const CouponsPage = () => {
       console.error("Error during login:", error);
     }
   };
+  const handleBalance = async () => {
+    const id = localStorage.getItem("id");
+    const response = await api.get(`user/details/${id}`);
+
+    setBalance(response.data.balance);
+  };
 
   useEffect(() => {
     handleLogin();
+    handleBalance();
   }, []);
   return (
     <main className="px-4 gap-4 flex flex-col mb-24">
       <h1 className="text-3xl font-bold">Seu Saldo</h1>
-      <BalanceCard></BalanceCard>
+      <BalanceCard balance={balance}></BalanceCard>
       <h1 className="text-3xl font-bold">Seus Prêmios</h1>
 
       {data.map((item, index) => (
