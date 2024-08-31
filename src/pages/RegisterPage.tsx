@@ -9,7 +9,7 @@ export default function RegistrationPage() {
       </button>
       <div className="text-center">
         <div className="mb-8">
-          {/* Replace this with your actual logo */}
+          {/*logo*/}
           <div className="flex justify-center">
             <svg className="w-24 h-24 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8zm8 2a8 8 0 11-16 0 8 8 0 0116 0z" />
