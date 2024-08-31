@@ -30,7 +30,7 @@ const EventInfoPage = () => {
     if (id) {
       getEventData();
     }
-  }, []);
+  }, [id]);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center pt-2 pb-10">
