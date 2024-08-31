@@ -36,15 +36,13 @@ const AppRouter: React.FC = () => {
         {/* Uncomment the routes below if you want to enable them */}
         {/* <Route path="/events" element={<EventsPage />} />
         <Route path="/my-events" element={<MyEventsPage />} />
-        <Route path="/shop" element={<ShopPage />} />*/}
+        <Route path="/shop" element={<ShopPage />} />
         <Route
           path="/coupons"
           element={
-            <div className="w-full">
-              <CardComponent></CardComponent>
-            </div>
+            <CouponsPage/>
           }
-        />
+        />*/}
       </Routes>
     </BrowserRouter>
   );
