@@ -37,26 +37,25 @@ const MyEventsPage = (props: Props) => {
   return (
     <main className="px-4 gap-4 flex flex-col mb-24">
       <h1 className="text-3xl font-bold">Meus Eventos</h1>
-      <Carousel className="w-full max-w-sm">
+      <Carousel className="w-full min-h-72 max-w-sm">
         <CarouselContent>
-          {events.map((eventData) => (
-            <CarouselItem className="basis-3/5 lg:basis-1/3">
-              <CardComponent buttonType="knowMore" data={eventData} />
-            </CarouselItem>
-          ))}
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
+          {events.map((eventData) => {
+            if (!eventData.isRegistered) return;
+            if (eventData.done) return;
+            return (
+              <CarouselItem className="basis-3/5 lg:basis-1/3">
+                <CardComponent buttonType="knowMore" data={eventData} />
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
       </Carousel>
       <h2 className="text-xl font-semibold">Eventos Anteriores</h2>
-      <CardComponent buttonType="knowMore"></CardComponent>
-      <CardComponent buttonType="knowMore"></CardComponent>
-      <CardComponent buttonType="knowMore"></CardComponent>
-      <CardComponent buttonType="knowMore"></CardComponent>
+      {events.map((eventData) => {
+        if (!eventData.isRegistered) return;
+        if (!eventData.done) return;
+        return <CardComponent buttonType="knowMore" data={eventData} />;
+      })}
     </main>
   );
 };
