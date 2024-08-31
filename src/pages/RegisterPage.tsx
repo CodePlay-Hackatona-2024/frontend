@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -6,16 +7,21 @@ import { CiMail } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
 import { AiOutlineIdcard } from "react-icons/ai";
 import backgroundImage from '../assets/background2.jpg';
+import logo from "../assets/logo.png";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function RegistrationPage() {
+export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [cpf, setCpf] = useState("");
+  const [document, setDocument] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [passwordError, setPasswordError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     if (password !== confirmPassword) {
@@ -28,24 +34,29 @@ export default function RegistrationPage() {
     setPasswordError("");
 
     try {
-      const response = await fetch("/api/auth/register", {
+      const response = await fetch("http://localhost:8080/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, cpf, password }),
+        body: JSON.stringify({ name, email, password, document }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
-        console.log("Registration successful", data);
+      if (response.status === 201) {
+        toast.success("Usuário criado com sucesso!");
+        setTimeout(() => {
+          navigate("/login"); // Redirect to /login after 2 seconds
+        }, 2000);
+      } else if (response.status === 400) {
+        setError(data.join(" "));
       } else {
-        setError(data.message || "Registration failed");
+        setError(data.message || "Erro na criação do usuário");
       }
     } catch (error) {
       console.error("Error during registration:", error);
-      setError("An error occurred. Please try again.");
+      setError("Um erro ocorreu. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -61,13 +72,13 @@ export default function RegistrationPage() {
         backgroundRepeat: "no-repeat",
       }}
     >
+      <ToastContainer />
       <div className="text-center bg-white p-6 rounded-lg shadow-lg w-full max-w-xs">
+        <h1 className="text-primary font-inter text-2xl font-bold mb-4">Help Chain</h1>
         <div className="mb-6">
           <div className="flex justify-center">
-            <img src="/logo.png" alt="Logo" className="w-20 h-20" />
+            <img src={logo} alt="Logo" className="w-20 h-20" />
           </div>
-          <h1 className="text-xl font-semibold mt-4">Bem-vindo ao ‘...’</h1>
-          <p className="text-gray-500 text-lg">Crie sua conta...</p>
         </div>
 
         <div className="space-y-4">
@@ -96,8 +107,8 @@ export default function RegistrationPage() {
             <Input
               type="text"
               placeholder="CPF"
-              value={cpf}
-              onChange={(e) => setCpf(e.target.value)}
+              value={document}
+              onChange={(e) => setDocument(e.target.value)}
               className="w-full pl-14 text-lg py-2"
             />
           </div>
@@ -142,7 +153,7 @@ export default function RegistrationPage() {
             <Button
               variant="link"
               className="text-primary hover:underline ml-1"
-              onClick={() => window.location.href = "/login"}
+              onClick={() => navigate("/login")}
             >
               Faça login
             </Button>
