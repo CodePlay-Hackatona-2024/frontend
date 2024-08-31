@@ -43,8 +43,7 @@ const events: eventModel[] = [
 const MyEventsPage = (props: Props) => {
   return (
     <main className="px-4 gap-4 flex flex-col mb-24">
-      <h1 className="text-3xl font-bold">Eventos Disponíveis</h1>
-      <h2 className="text-xl font-semibold">Treinamento</h2>
+      <h1 className="text-3xl font-bold">Meus Eventos</h1>
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
           {events.map((eventData) => (
@@ -60,57 +59,11 @@ const MyEventsPage = (props: Props) => {
           </CarouselItem>
         </CarouselContent>
       </Carousel>
-      <h2 className="text-xl font-semibold">Doações</h2>
-      <Carousel className="w-full max-w-sm">
-        <CarouselContent>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
-      <h2 className="text-xl font-semibold">Simulações</h2>
-      <Carousel className="w-full max-w-sm">
-        <CarouselContent>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
-      <h2 className="text-xl font-semibold">Multirão</h2>
-      <Carousel className="w-full max-w-sm">
-        <CarouselContent>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
+      <h2 className="text-xl font-semibold">Eventos Anteriores</h2>
+      <CardComponent></CardComponent>
+      <CardComponent></CardComponent>
+      <CardComponent></CardComponent>
+      <CardComponent></CardComponent>
     </main>
   );
 };
