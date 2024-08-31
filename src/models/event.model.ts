@@ -11,6 +11,6 @@ export type eventModel = {
   isRegistered: boolean;
   organizerId: null;
   done: boolean;
-  imageUrl: string;
+  photo_url: string;
   location: string;
 };
