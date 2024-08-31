@@ -18,9 +18,13 @@ const MyEventsPage = () => {
       try {
         const response: { events: eventModel[] } = await api
           .get(
-            `https://backend-wheat-alpha-40.vercel.app/event/${localStorage.getItem("id")}`
+            `https://backend-wheat-alpha-40.vercel.app/event/${localStorage.getItem(
+              "id"
+            )}`
           )
-          .then((response: { data: { events: eventModel[] } }) => response.data);
+          .then(
+            (response: { data: { events: eventModel[] } }) => response.data
+          );
 
         const eventsWithImage = response.events.map((event) => ({
           ...event,
@@ -42,11 +46,11 @@ const MyEventsPage = () => {
       <h1 className="text-3xl font-bold">Meus Eventos</h1>
       <Carousel className="w-full min-h-72 max-w-sm">
         <CarouselContent>
-          {events.map((eventData) => {
+          {events.map((eventData, index) => {
             if (!eventData.isRegistered) return null;
             if (eventData.done) return null;
             return (
-              <CarouselItem className="basis-3/5 lg:basis-1/3">
+              <CarouselItem className="basis-3/5 lg:basis-1/3" key={index}>
                 <CardComponent buttonType="validate" data={eventData} />
               </CarouselItem>
             );
@@ -57,7 +61,13 @@ const MyEventsPage = () => {
       {events.map((eventData) => {
         if (!eventData.isRegistered) return null;
         if (!eventData.done) return null;
-        return <CardComponent key={eventData.event_id} buttonType="knowMore" data={eventData} />;
+        return (
+          <CardComponent
+            key={eventData.event_id}
+            buttonType="knowMore"
+            data={eventData}
+          />
+        );
       })}
     </main>
   );

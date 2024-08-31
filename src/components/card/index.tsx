@@ -41,10 +41,10 @@ const CardComponent = ({ buttonType: type, data }: Props) => {
           <Dialog>
             <DialogTrigger asChild>
               <button className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded">
-                Saiba Mais
+                Validar horas
               </button>
             </DialogTrigger>
-            <DialogDemo id="dsijaidsj"></DialogDemo>
+            <DialogDemo id={data?.event_id}></DialogDemo>
           </Dialog>
         );
       case "knowMore":
