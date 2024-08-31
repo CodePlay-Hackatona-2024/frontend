@@ -23,7 +23,7 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const response = await api.post<{ user: { id: string } }>(
+      const response = await api.post<{ user :{id: string }}>( 
         "user/login",
         JSON.stringify({ email, password })
       );

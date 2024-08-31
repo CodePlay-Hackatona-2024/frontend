@@ -7,25 +7,29 @@ import {
 } from "../ui/card";
 import defaultImage from "../../assets/event-mock.png";
 import { Calendar } from "lucide-react";
+import { eventModel } from "../../models/event.model";
+import { FaBackward } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
+type ButtonType = "subscribe";
 
 type Props = {
-  type: "subscribe" | "validate";
-  data?: {
-    imageUrl: string;
-    title: string;
-    location: string;
-    date: string;
-    description: string;
-  };
+  buttonType: ButtonType;
+  data: eventModel & { imageUrl: string };
+  onSubscribe?: () => void;
 };
 
-const CardComponent = ({ type, data }: Props) => {
+const CardComponent = ({ buttonType: type, data, onSubscribe }: Props) => {
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    if (type === "subscribe") {
-      console.log(" call handle subscribe");
-    } else if (type === "validate") {
-      console.log(" call handle validate");
+    if (type === "subscribe" && onSubscribe) {
+      onSubscribe();
     }
+  };
+
+  const handleBack = () => {
+    navigate("/events");
   };
 
   return (
@@ -49,12 +53,19 @@ const CardComponent = ({ type, data }: Props) => {
         <p className="text-gray-700">
           {data?.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa."}
         </p>
-        <div className="mt-4 flex justify-end">
+        <div className="mt-4 flex justify-between">
+          <button
+            className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded flex items-center"
+            onClick={handleBack}
+          >
+            <FaBackward className="mr-2" />
+            Voltar
+          </button>
           <button
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={handleClick}
           >
-            {type === "subscribe" ? "Inscrever-se" : "Validar"}
+            Inscrever-se
           </button>
         </div>
       </CardContent>
