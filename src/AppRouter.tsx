@@ -12,10 +12,8 @@ import RegisterPage from "./pages/RegisterPage";
 import { ToggleGroupDemo } from "./components/navigationBar";
 import EventsPage from "./pages/EventsPage";
 import { Header } from "./components/header/Header";
-// import EventsPage from "./pages/EventsPage";
-// import MyEventsPage from "./pages/MyEventsPage";
-// import ShopPage from "./pages/ShopPage";
-// import CouponsPage from "./pages/CouponsPage";
+import MyEventsPage from "./pages/MyEventsPage";
+import ShopPage from "./pages/ShopPage";
 
 const AppRouter: React.FC = () => {
   const isAuthenticated = true;
@@ -30,13 +28,10 @@ const AppRouter: React.FC = () => {
         </Route>
         <Route element={<PrivateWrapper auth={{ isAuthenticated }} />}>
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/my-events" element={<MyEventsPage />} />
+          <Route path="/rewards" element={<div />} />
+          <Route path="/shop" element={<ShopPage />} />
         </Route>
-
-        {/* Uncomment the routes below if you want to enable them */}
-        {/* <Route path="/events" element={<EventsPage />} />
-        <Route path="/my-events" element={<MyEventsPage />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/coupons" element={<CouponsPage />} /> */}
       </Routes>
     </BrowserRouter>
   );
