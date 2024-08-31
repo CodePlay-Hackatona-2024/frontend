@@ -16,7 +16,7 @@ import MyEventsPage from "./pages/MyEventsPage";
 import ShopPage from "./pages/ShopPage";
 
 const AppRouter: React.FC = () => {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   return (
     <BrowserRouter>
       {/* This will appear on every page */}

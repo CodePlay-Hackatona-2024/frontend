@@ -1,15 +1,43 @@
-import React from "react";
 import CardComponent from "../components/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "../components/ui/carousel";
-import { Card, CardContent } from "../components/ui/card";
+import { eventModel } from "../models/event.model";
 
 type Props = {};
+
+const events: eventModel = [
+  {
+    imageUrl: "https://cdn.evg.gov.br/cursos/697_EVG/imagem_curso_697.png",
+    title: "Proteção e Defesa Civil: Atuação no Âmbito Municipal - Curso 2",
+    location: "Online",
+    date: "31/08/2024",
+    type: "treinamento",
+  },
+  {
+    imageUrl: "https://cdn.evg.gov.br/cursos/842_EVG/imagem_curso_842.jpg",
+    title: "GIRD+10: Gestão Integrada de Riscos e Desastres",
+    location: "Online",
+    date: "31/08/2024",
+    type: "treinamento",
+  },
+  {
+    imageUrl: "https://cdn.evg.gov.br/cursos/505_EVG/imagem_curso_505.png",
+    title: " Proteção e Defesa Civil: introdução à Política Nacional - Curso 1",
+    location: "Online",
+    date: "31/08/2024",
+    type: "treinamento",
+  },
+  {
+    imageUrl:
+      "https://images02.brasildefato.com.br/33d86c68d6650b75f7537502fa6981fa.webp",
+    title: " Voluntariado em cozinha solidária",
+    location: " Porto Alegre",
+    date: "04/09/2024",
+  },
+];
 
 const EventsPage = (props: Props) => {
   return (
@@ -18,12 +46,11 @@ const EventsPage = (props: Props) => {
       <h2 className="text-xl font-semibold">Treinamento</h2>
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent></CardComponent>
-          </CarouselItem>
+          {events.map((eventData) => (
+            <CarouselItem className="basis-3/5 lg:basis-1/3">
+              <CardComponent data={eventData}></CardComponent>
+            </CarouselItem>
+          ))}
           <CarouselItem className="basis-3/5 lg:basis-1/3">
             <CardComponent></CardComponent>
           </CarouselItem>
