@@ -46,7 +46,7 @@ const EventsPage = (props: Props) => {
   const getEvents = async () => {
     const response: { events: eventModel[] } = await api
       .get(
-        "https://backend-wheat-alpha-40.vercel.app/event/cm0i89f540002bch62xpvp5pc"
+        "https://backend-wheat-alpha-40.vercel.app/event/cm0ic7x4t00002rpg01hgeuzx"
       )
       .then((response: { data: { events: eventModel[] } }) => response.data);
 
@@ -74,71 +74,53 @@ const EventsPage = (props: Props) => {
       <h2 className="text-xl font-semibold">Treinamento</h2>
       <Carousel className="w-full">
         <CarouselContent>
-          {events.map((eventData) => (
-            <CarouselItem className="basis-3/5 lg:basis-1/5">
-              <CardComponent
-                buttonType="knowMore"
-                data={eventData}
-              ></CardComponent>
-            </CarouselItem>
-          ))}
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
+          {events.map((eventData) => {
+            if (!(eventData.type === "treinamento")) return;
+            return (
+              <CarouselItem className="basis-3/5 lg:basis-1/5">
+                <CardComponent buttonType="knowMore" data={eventData} />
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
       </Carousel>
       <h2 className="text-xl w-full font-semibold">Doações</h2>
       <Carousel className="w-full">
         <CarouselContent>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
+          {events.map((eventData) => {
+            if (!(eventData.type === "doação")) return;
+            return (
+              <CarouselItem className="basis-3/5 lg:basis-1/5">
+                <CardComponent buttonType="knowMore" data={eventData} />
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
       </Carousel>
       <h2 className="text-xl font-semibold">Simulações</h2>
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
+          {events.map((eventData) => {
+            if (!(eventData.type === "simulação")) return;
+            return (
+              <CarouselItem className="basis-3/5 lg:basis-1/3">
+                <CardComponent buttonType="knowMore" data={eventData} />
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
       </Carousel>
       <h2 className="text-xl font-semibold">Multirão</h2>
       <Carousel className="w-full max-w-sm">
         <CarouselContent>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/5">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
+          {events.map((eventData) => {
+            if (!(eventData.type === "mutirão")) return;
+            return (
+              <CarouselItem className="basis-3/5 lg:basis-1/3">
+                <CardComponent buttonType="knowMore" data={eventData} />
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
       </Carousel>
     </main>
