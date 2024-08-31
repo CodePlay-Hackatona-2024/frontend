@@ -7,6 +7,7 @@ import { CiMail } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
 import { AiOutlineIdcard } from "react-icons/ai";
 import backgroundImage from '../assets/background2.jpg';
+import logo from "../assets/logo.png";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -73,12 +74,11 @@ export default function RegisterPage() {
     >
       <ToastContainer />
       <div className="text-center bg-white p-6 rounded-lg shadow-lg w-full max-w-xs">
+        <h1 className="text-primary font-inter text-2xl font-bold mb-4">Help Chain</h1>
         <div className="mb-6">
           <div className="flex justify-center">
-            <img src="/logo.png" alt="Logo" className="w-20 h-20" />
+            <img src={logo} alt="Logo" className="w-20 h-20" />
           </div>
-          <h1 className="text-xl font-semibold mt-4">Bem-vindo ao ‘...’</h1>
-          <p className="text-gray-500 text-lg">Crie sua conta...</p>
         </div>
 
         <div className="space-y-4">

@@ -15,11 +15,11 @@ const EventInfoPage = () => {
   useEffect(() => {
     const getEventData = async () => {
       try {
-        const response = await api.get<eventModel>(
-          `https://backend-wheat-alpha-40.vercel.app/event/${id}`
+        const response = await api.get<{item: eventModel}>(
+          `https://backend-wheat-alpha-40.vercel.app/event/details/${id}`
         );
         console.log(response.data);
-        setEventData(response.data);
+        setEventData(response.data.item);
       } catch (error) {
         console.error("Erro ao carregar os dados do evento", error);
       } finally {
