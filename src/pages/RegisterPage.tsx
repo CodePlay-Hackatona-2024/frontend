@@ -6,10 +6,11 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { CiMail } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
 import { AiOutlineIdcard } from "react-icons/ai";
-import backgroundImage from '../assets/background2.jpg';
+import backgroundImage from "../assets/background2.jpg";
 import logo from "../assets/logo.png";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { api } from "@/lib/api/axios";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
@@ -34,25 +35,18 @@ export default function RegisterPage() {
     setPasswordError("");
 
     try {
-      const response = await fetch("http://localhost:8080/user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password, document }),
+      const response = await api.post("user/", {
+        name,
+        email,
+        document,
+        password,
       });
-
-      const data = await response.json();
-
+      console.log(response);
       if (response.status === 201) {
         toast.success("Usuário criado com sucesso!");
-        setTimeout(() => {
-          navigate("/login"); // Redirect to /login after 2 seconds
-        }, 2000);
-      } else if (response.status === 400) {
-        setError(data.join(" "));
+        navigate("/login");
       } else {
-        setError(data.message || "Erro na criação do usuário");
+        setError(response.data.message || "Erro na criação do usuário");
       }
     } catch (error) {
       console.error("Error during registration:", error);
@@ -74,7 +68,9 @@ export default function RegisterPage() {
     >
       <ToastContainer />
       <div className="text-center bg-white p-6 rounded-lg shadow-lg w-full max-w-xs">
-        <h1 className="text-primary font-inter text-2xl font-bold mb-4">Help Chain</h1>
+        <h1 className="text-primary font-inter text-2xl font-bold mb-4">
+          Help Chain
+        </h1>
         <div className="mb-6">
           <div className="flex justify-center">
             <img src={logo} alt="Logo" className="w-20 h-20" />
@@ -132,7 +128,9 @@ export default function RegisterPage() {
               className="w-full pl-14 text-lg py-2"
             />
           </div>
-          {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
+          {passwordError && (
+            <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+          )}
         </div>
 
         {error && <p className="text-red-500 mt-4">{error}</p>}
