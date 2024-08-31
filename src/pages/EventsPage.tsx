@@ -8,7 +8,7 @@ import { eventModel } from "../models/event.model";
 
 type Props = {};
 
-const events: eventModel = [
+const events: eventModel[] = [
   {
     imageUrl: "https://cdn.evg.gov.br/cursos/697_EVG/imagem_curso_697.png",
     title: "Proteção e Defesa Civil: Atuação no Âmbito Municipal - Curso 2",
@@ -36,6 +36,7 @@ const events: eventModel = [
     title: " Voluntariado em cozinha solidária",
     location: " Porto Alegre",
     date: "04/09/2024",
+    type: "multirao",
   },
 ];
 
