@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { CiMail } from "react-icons/ci";
 import { ClipLoader } from "react-spinners";
-import backgroundImage from '../assets/background2.jpg';
+import backgroundImage from "../assets/background2.jpg";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -30,6 +30,7 @@ export default function LoginPage() {
 
       if (response.ok) {
         console.log("Login successful", data);
+        localStorage.setItem("id", data.id);
       } else {
         setError(data.message || "Login failed");
       }

@@ -10,40 +10,46 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { api } from "@/lib/api/axios";
+import { ReactNode, useState } from "react";
 
-export function DialogDemo({ id }: { id: string }) {
-  const handleConfirm = () => {};
-
-  const get = () => {};
+export function DialogDemo({ id }: { id: string }): ReactNode {
+  const [confirmed, setConfirmed] = useState(false);
+  const handleConfirm = async () => {
+    const id = localStorage.getItem("id");
+    console.log(id);
+    const response = await api.patch(
+      `user/register/${id}/${localStorage.getItem("id")}`
+    );
+    if (response.status === 200) {
+      setConfirmed(true);
+      console.log("Confirmed");
+    }
+  };
 
   return (
     <DialogContent className="sm:max-w-[425px]">
       <DialogHeader>
-        <DialogTitle>Edit profile</DialogTitle>
+        <DialogTitle>Confirme sua presença</DialogTitle>
         <DialogDescription>
-          Make changes to your profile here. Click save when you're done.
+          Digite o código disponiblizado para confirmar sua presença
         </DialogDescription>
       </DialogHeader>
       <div className="grid gap-4 py-4">
         <div className="grid grid-cols-4 items-center gap-4">
-          <Label htmlFor="name" className="text-right">
-            Name
-          </Label>
-          <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
-        </div>
-        <div className="grid grid-cols-4 items-center gap-4">
-          <Label htmlFor="username" className="text-right">
-            Username
-          </Label>
-          <Input
-            id="username"
-            defaultValue="@peduarte"
-            className="col-span-3"
-          />
+          <Label className="text-right">Código</Label>
+          <Input defaultValue="123456" className="col-span-3" />
         </div>
       </div>
       <DialogFooter>
-        <Button type="submit">Save changes</Button>
+        {confirmed ? (
+          <div className="flex gap-2">
+            <p>Parabéns! Você concluiu um evento!</p>
+            <Button type="submit">Sair</Button>
+          </div>
+        ) : (
+          <Button onClick={handleConfirm}>Confirmar</Button>
+        )}
       </DialogFooter>
     </DialogContent>
   );
