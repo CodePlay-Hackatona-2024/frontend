@@ -2,8 +2,7 @@ import { Card, CardHeader, CardTitle, CardDescription } from "../ui/card";
 import { Calendar } from "lucide-react";
 import { eventModel } from "../../models/event.model";
 import { useNavigate } from "react-router-dom";
-import { Dialog } from "@radix-ui/react-dialog";
-import { DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import { DialogDemo } from "../confirm-modal";
 
 type buttoType = "subscribe" | "validate" | "knowMore";

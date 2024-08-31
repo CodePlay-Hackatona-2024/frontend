@@ -14,11 +14,11 @@ import EventsPage from "./pages/EventsPage";
 import { Header } from "./components/header/Header";
 import MyEventsPage from "./pages/MyEventsPage";
 import ShopPage from "./pages/ShopPage";
-import { AuthProvider, useAuth } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
 import EventInfoPage from "./pages/EventInfoPage";
+import CouponsPage from "./pages/CouponsPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Coupon from "./components/coupon";
 
 const AppRouter: React.FC = () => {
   return (
@@ -34,7 +34,7 @@ const AppRouter: React.FC = () => {
           <Route element={<PrivateWrapper />}>
             <Route path="/events" element={<EventsPage />} />
             <Route path="/my-events" element={<MyEventsPage />} />
-            <Route path="/rewards" element={<div />} />
+            <Route path="/rewards" element={<CouponsPage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/event-info/:id" element={<EventInfoPage />} />
           </Route>
@@ -45,24 +45,17 @@ const AppRouter: React.FC = () => {
 };
 
 const PrivateWrapper = () => {
-  // const { isAuthenticated } = useAuth();
-  const isAuthenticated = true;
-
-  return isAuthenticated ? (
+  return (
     <>
       <Header />
       <Outlet />
       <ToggleGroupDemo />
     </>
-  ) : (
-    <Navigate to="/login" />
   );
 };
 
 const PublicWrapper = () => {
-  const { isAuthenticated } = useAuth();
-
-  return isAuthenticated ? <Navigate to="/events" /> : <Outlet />;
+  return <Outlet />;
 };
 
 export default AppRouter;
