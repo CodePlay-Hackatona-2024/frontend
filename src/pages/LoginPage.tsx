@@ -1,41 +1,48 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { CiMail } from "react-icons/ci";
 import { ClipLoader } from "react-spinners";
 import backgroundImage from '../assets/background2.jpg';
+import { useAuth } from "../context/AuthContext";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     setLoading(true);
     setError("");
 
     try {
-      const response = await fetch(
-        `/api/auth/login?email=${encodeURIComponent(
-          email
-        )}&password=${encodeURIComponent(password)}`,
-        {
-          method: "GET",
-        }
-      );
-
-      const data = await response.json();
+      const response = await fetch("http://localhost:8080/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
       if (response.ok) {
-        console.log("Login successful", data);
+        const data = await response.json();
+        console.log("Login bem-sucedido", data);
+        login();
+        navigate("/events");
+      } else if (response.status === 400) {
+        const data = await response.json();
+        setError(data.join(" "));
       } else {
-        setError(data.message || "Login failed");
+        setError("Falha no login. Tente novamente.");
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      setError("An error occurred. Please try again.");
+      console.error("Erro durante o login:", error);
+      setError("Ocorreu um erro. Tente novamente.");
     } finally {
       setLoading(false);
     }
