@@ -1,48 +1,34 @@
-import CardComponent from "../components/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "../components/ui/carousel";
+import React, { useEffect, useState } from "react";
+import Coupon, { CouponProps } from "@/components/coupon";
 
-type Props = {};
+const ShopPage = () => {
+  const [data, setData] = useState<CouponProps[]>([]);
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/item", {
+        method: "GET",
+      });
 
-const ShopPage = (props: Props) => {
+      await response.json().then((res) => {
+        setData(res.items);
+      });
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
+  };
+
+  useEffect(() => {
+    handleLogin();
+  }, []);
   return (
     <main className="px-4 gap-4 flex flex-col mb-24">
       <h1 className="text-3xl font-bold">Loja</h1>
-      <h2 className="text-xl font-semibold">Produtos</h2>
-      <Carousel className="w-full max-w-sm">
-        <CarouselContent>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <></>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
-      <h2 className="text-xl font-semibold">Cupons</h2>
 
-      <Carousel className="w-full max-w-sm">
-        <CarouselContent>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-          <CarouselItem className="basis-3/5 lg:basis-1/3">
-            <CardComponent buttonType="knowMore"></CardComponent>
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
+      {data.map((item, index) => (
+        <div key={index}>
+          <Coupon data={item}></Coupon>
+        </div>
+      ))}
     </main>
   );
 };

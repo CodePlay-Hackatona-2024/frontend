@@ -7,17 +7,13 @@ import {
 } from "../ui/card";
 import image from "../../assets/event-mock.png";
 import { Calendar } from "lucide-react";
+import { eventModel } from "../../models/event.model";
 
 type buttoType = "subscribe" | "validate" | "knowMore";
 
 type Props = {
   buttonType: buttoType;
-  data?: {
-    imageUrl: string;
-    title: string;
-    location: string;
-    date: string;
-  };
+  data?: eventModel & { imageUrl: string };
 };
 
 const CardComponent = ({ buttonType: type, data }: Props) => {
@@ -72,7 +68,7 @@ const CardComponent = ({ buttonType: type, data }: Props) => {
         <div className="flex flex-col w-full gap-4">
           <CardHeader className="m-0 p-0 pt-4">
             <CardTitle>{data.title}</CardTitle>
-            <CardDescription>{data.location}</CardDescription>
+            <CardDescription>{data.capacity}</CardDescription>
             <CardDescription className="flex gap-1 items-center">
               <Calendar size={16} />
               {data.date}
