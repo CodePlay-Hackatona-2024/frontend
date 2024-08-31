@@ -46,7 +46,7 @@ const EventsPage = (props: Props) => {
   const getEvents = async () => {
     const response: { events: eventModel[] } = await api
       .get(
-        "https://backend-wheat-alpha-40.vercel.app/event/cm0ic7x4t00002rpg01hgeuzx"
+        "https://backend-wheat-alpha-40.vercel.app/event/cm0id8ri30000jw23bip7y6tu"
       )
       .then((response: { data: { events: eventModel[] } }) => response.data);
 
@@ -72,7 +72,7 @@ const EventsPage = (props: Props) => {
     <main className="px-4 gap-4 flex flex-col mb-24 w-full">
       <h1 className="text-3xl font-bold">Eventos Disponíveis</h1>
       <h2 className="text-xl font-semibold">Treinamento</h2>
-      <Carousel className="w-full">
+      <Carousel className="w-full min-h-72">
         <CarouselContent>
           {events.map((eventData) => {
             if (!(eventData.type === "treinamento")) return;
@@ -85,7 +85,7 @@ const EventsPage = (props: Props) => {
         </CarouselContent>
       </Carousel>
       <h2 className="text-xl w-full font-semibold">Doações</h2>
-      <Carousel className="w-full">
+      <Carousel className="w-full min-h-72">
         <CarouselContent>
           {events.map((eventData) => {
             if (!(eventData.type === "doação")) return;
@@ -98,7 +98,7 @@ const EventsPage = (props: Props) => {
         </CarouselContent>
       </Carousel>
       <h2 className="text-xl font-semibold">Simulações</h2>
-      <Carousel className="w-full max-w-sm">
+      <Carousel className="w-full  min-h-72">
         <CarouselContent>
           {events.map((eventData) => {
             if (!(eventData.type === "simulação")) return;
@@ -111,7 +111,7 @@ const EventsPage = (props: Props) => {
         </CarouselContent>
       </Carousel>
       <h2 className="text-xl font-semibold">Multirão</h2>
-      <Carousel className="w-full max-w-sm">
+      <Carousel className="w-full min-h-72">
         <CarouselContent>
           {events.map((eventData) => {
             if (!(eventData.type === "mutirão")) return;
