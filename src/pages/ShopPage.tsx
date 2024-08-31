@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Coupon, { CouponProps } from "@/components/coupon";
 import { api } from "../lib/api/axios";
 
@@ -6,7 +6,7 @@ const ShopPage = () => {
   const [data, setData] = useState<CouponProps[]>([]);
   const handleLogin = async () => {
     try {
-      const response = await api
+       await api
         .get<{ items: CouponProps[] }>("item")
         .then((res) => {
           setData(res.data.items);

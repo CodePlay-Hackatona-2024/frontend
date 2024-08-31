@@ -3,7 +3,6 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Navigate,
   Outlet,
 } from "react-router-dom";
 import FirstPage from "./pages/FirstPage";

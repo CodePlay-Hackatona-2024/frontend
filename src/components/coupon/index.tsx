@@ -7,8 +7,6 @@ import {
   CardDescription,
   CardContent,
 } from "../ui/card";
-import { Calendar } from "lucide-react";
-import logoImage from "../../assets/renner.png";
 import coin from "../../assets/coin.png";
 import { api } from "@/lib/api/axios";
 
@@ -24,7 +22,7 @@ export type CouponProps = {
 };
 
 const Coupon = ({ data }: { data: CouponProps }) => {
-  const [clicked, setClicked] = useState(false);
+  const [clicked, _] = useState(false);
   const [copied, setCopied] = useState(false);
   const couponCode = "DESC10OFFAUG24";
 
