@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import FirstPage from "./pages/FirstPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -12,6 +18,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import EventInfoPage from "./pages/EventInfoPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Coupon from "./components/coupon";
 
 const AppRouter: React.FC = () => {
   return (

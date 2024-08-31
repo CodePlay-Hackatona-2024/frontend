@@ -18,17 +18,13 @@ const EventsPage = () => {
       )
       .then((response: { data: { events: eventModel[] } }) => response.data);
 
-    const eventsWithImage = response.events.map((event) => ({
-      ...event,
-    }));
+    const eventsWithImage = response.events;
 
     setEvents(eventsWithImage);
     console.log(response);
   };
 
-  const [events, setEvents] = useState<(eventModel & { imageUrl: string })[]>(
-    []
-  );
+  const [events, setEvents] = useState<eventModel[]>([]);
 
   useEffect(() => {
     getEvents();
@@ -42,6 +38,8 @@ const EventsPage = () => {
         <CarouselContent>
           {events.map((eventData) => {
             if (!(eventData.type === "treinamento")) return;
+            if (eventData.done) return;
+            if (eventData.isRegistered) return;
             return (
               <CarouselItem className="basis-3/5 lg:basis-1/5">
                 <CardComponent buttonType="knowMore" data={eventData} />
@@ -55,6 +53,8 @@ const EventsPage = () => {
         <CarouselContent>
           {events.map((eventData) => {
             if (!(eventData.type === "mutirão")) return;
+            if (eventData.done) return;
+            if (eventData.isRegistered) return;
             return (
               <CarouselItem className="basis-3/5 lg:basis-1/3">
                 <CardComponent buttonType="knowMore" data={eventData} />
