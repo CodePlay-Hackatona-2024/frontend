@@ -18,7 +18,7 @@ const MyEventsPage = (props: Props) => {
   const getEvents = async () => {
     const response: { events: eventModel[] } = await api
       .get(
-        "https://backend-wheat-alpha-40.vercel.app/event/cm0i89f540002bch62xpvp5pc"
+        "https://backend-wheat-alpha-40.vercel.app/event/cm0iehzl20001t5ivxnmjw92x"
       )
       .then((response: { data: { events: eventModel[] } }) => response.data);
 
@@ -32,7 +32,9 @@ const MyEventsPage = (props: Props) => {
     console.log(response);
   };
 
-  useState;
+  useState(() => {
+    getEvents();
+  });
 
   return (
     <main className="px-4 gap-4 flex flex-col mb-24">
@@ -44,7 +46,7 @@ const MyEventsPage = (props: Props) => {
             if (eventData.done) return;
             return (
               <CarouselItem className="basis-3/5 lg:basis-1/3">
-                <CardComponent buttonType="knowMore" data={eventData} />
+                <CardComponent buttonType="validate" data={eventData} />
               </CarouselItem>
             );
           })}
